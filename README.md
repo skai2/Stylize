@@ -1,14 +1,8 @@
 # Neural Style API
 Image neural network style transfer API using flask, based on the implementation here:
-The algorithm can be used to mix the content of an image with the style of another image. For example, here is a photograph of a door arch rendered in the style of a stained glass painting. 
+The algorithm can be used transfer the artistic style of one image over to another.
 
 **Requirement**: Run this project using GPU instance if using FloydHub. CPU instace does not satisfy the RAM requirement.
-
-<p align="center">
-    <img src="images/style-images/mosaic.jpg" height="200px">
-    <img src="images/content-images/amber.jpg" height="200px">
-    <img src="images/output-images/amber-mosaic.jpg" height="440px">
-</p>
 
 ## Usage
 - Run app.py to start flask server
