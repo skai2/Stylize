@@ -3,6 +3,18 @@ Image neural network style transfer API using flask, based on the implementation
 The algorithm can be used to transfer the artistic style of one image over to another.
 
 ## Usage
+- Clone project to server and enter directory
+```bash
+git clone https://github.com/skai2/Stylize.git
+```
+- Enter project directory
+```bash
+cd 
+```
+- Install requirements
+```bash
+pip install -r requirements.txt
+```
 - Run app.py to start flask server
 ```bash
 python app.py
