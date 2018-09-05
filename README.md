@@ -9,7 +9,7 @@ git clone https://github.com/skai2/Stylize.git
 ```
 - Enter project directory
 ```bash
-cd 
+cd Stylize
 ```
 - Install requirements
 ```bash
