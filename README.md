@@ -10,8 +10,15 @@ python app.py
 - Use the following API call:
 ```bash
 # Template
-curl -X POST -o <NAME_&_PATH_DOWNLOADED_IMG> -F "file=@<IMAGE_TO_STYLE>" -F "checkpoint=<MODEL_CHECKPOINT>" <SERVICE_ENDPOINT>
+curl -X POST -F "file=@<IMAGE_TO_STYLE>" -F "checkpoint=<MODEL_CHECKPOINT>" <SERVICE_ENDPOINT>
 
-# e.g. of a POST req using FloydHub
-curl -X POST -o myfile-udnie.jpg -F "file=@./myfile.jpg" -F "checkpoint=udnie.pth" https://www..floydlabs.com/expose/BhZCFAKom6Z8RptVKskHZW
+# e.g. of a POST req on a local server
+curl -X POST -F "file=@./myfile.jpg" -F "checkpoint=models/udnie.ckpt" https://127.0.0.1:5000/
 ```
+Checkpoint options are:
+  - models/udnie.ckpt
+  - models/la_muse.ckpt
+  - models/rain_princess.ckpt
+  - models/scream.ckpt
+  - models/wave.ckpt
+  - models/wreck.ckpt
