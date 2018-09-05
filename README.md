@@ -1,8 +1,6 @@
 # Neural Style API
-Image neural network style transfer API using flask, based on the implementation [here](https://github.com/floydhub/fast-neural-style). 
+Image neural network style transfer API using flask, based on the implementation [here](https://github.com/lengstrom/fast-style-transfer). 
 The algorithm can be used to transfer the artistic style of one image over to another.
-
-**Requirement**: Run this project using GPU instance if using FloydHub. CPU instace does not satisfy the RAM requirement.
 
 ## Usage
 - Run app.py to start flask server
