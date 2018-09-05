@@ -1,0 +1,4 @@
+moviepy==0.2.3.5
+numpy==1.15.1
+scipy==1.1.0
+tensorflow==1.10.1
