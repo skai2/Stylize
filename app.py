@@ -32,7 +32,7 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             filename_out = 'out.jpg'
-            ffwd_to_img(filename, filename_out, request.files['checkpoint'])
+            ffwd_to_img(filename, filename_out, request.form['checkpoint'])
             return redirect(url_for('uploaded_file',
                                     filename=filename_out))
     return '''
@@ -41,6 +41,14 @@ def upload_file():
     <h1>Upload new File</h1>
     <form method=post enctype=multipart/form-data>
       <p><input type=file name=file>
+          <select name="checkpoint">
+              <option value="models/udnie.ckpt">Udnie</option>
+              <option value="models/la_muse.ckpt">La Muse</option>
+              <option value="models/rain_princess.ckpt">Rain Princess</option>
+              <option value="models/scream.ckpt">Scream</option>
+              <option value="models/wave.ckpt">Wave</option>
+              <option value="models/wreck.ckpt">Wreck</option>
+          </select> 
          <input type=submit value=Upload>
     </form>
     '''
