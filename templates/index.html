@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Flask app</title>
+  <!-- bootstrap & fontawesome -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}" />
+
+  <!-- page specific plugin styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.custom.min.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/chosen.min.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-datepicker3.min.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-timepicker.min.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/daterangepicker.min.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-datetimepicker.min.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-colorpicker.min.css') }}" />
+
+  <!-- text fonts -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.googleapis.com.css') }}" />
+
+  <!-- ace styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/ace.min.css') }}" class="ace-main-stylesheet" id="main-ace-style"
+  />
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/ace-skins.min.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/ace-rtl.min.css') }}" />
+
+  <!--[if lte IE 9]>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/ace-ie.min.css') }}" />
+  <![endif]-->
+
+  <!-- inline styles related to this page -->
+
+  <!-- ace settings handler -->
+  <script src="{{ url_for('static', filename='js/ace-extra.min.js') }}"></script>
+
+  <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+  <!--[if lte IE 8]>
+  <script src="{{ url_for('static', filename='js/html5shiv.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='js/respond.min.js') }}"></script>
+  <![endif]-->
+
+  <!-- My imports -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+
+<body class="no-skin">
+  <div id="navbar" class="navbar navbar-default ace-save-state">
+    <div class="navbar-container ace-save-state" id="navbar-container">
+
+      <div class="navbar-header pull-left">
+        <a href="index.html" class="navbar-brand">
+          <small>
+            Stylize
+          </small>
+        </a>
+      </div>
+
+    </div><!-- /.navbar-container -->
+  </div>
+
+  <div class="main-container ace-save-state" id="main-container">
+    <script type="text/javascript">
+    try { ace.settings.loadState('main-container') } catch (e) { }
+    </script>
+
+    <div class="main-content">
+      <div class="main-content-inner">
+        <div class="page-content">
+          <div class="ace-settings-container" id="ace-settings-container">
+
+            <div class="ace-settings-box clearfix" id="ace-settings-box">
+              <div class="pull-left width-50">
+
+                <div class="ace-settings-item">
+                  <input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-navbar" autocomplete="off" />
+                  <label class="lbl" for="ace-settings-navbar"> Fixed Navbar</label>
+                </div>
+
+                <div class="ace-settings-item">
+                  <input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-sidebar" autocomplete="off" />
+                  <label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
+                </div>
+
+                <div class="ace-settings-item">
+                  <input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-breadcrumbs" autocomplete="off" />
+                  <label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
+                </div>
+
+                <div class="ace-settings-item">
+                  <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" autocomplete="off" />
+                  <label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
+                </div>
+
+                <div class="ace-settings-item">
+                  <input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-add-container" autocomplete="off" />
+                  <label class="lbl" for="ace-settings-add-container">
+                    Inside
+                    <b>.container</b>
+                  </label>
+                </div>
+              </div><!-- /.pull-left -->
+
+              <div class="pull-left width-50">
+                <div class="ace-settings-item">
+                  <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-hover" autocomplete="off" />
+                  <label class="lbl" for="ace-settings-hover"> Submenu on Hover</label>
+                </div>
+
+                <div class="ace-settings-item">
+                  <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-compact" autocomplete="off" />
+                  <label class="lbl" for="ace-settings-compact"> Compact Sidebar</label>
+                </div>
+
+                <div class="ace-settings-item">
+                  <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-highlight" autocomplete="off" />
+                  <label class="lbl" for="ace-settings-highlight"> Alt. Active Item</label>
+                </div>
+              </div><!-- /.pull-left -->
+            </div><!-- /.ace-settings-box -->
+          </div><!-- /.ace-settings-container -->
+
+          <form method=post enctype=multipart/form-data>
+            <div class="row">
+              <div class="col-xs-2"></div>
+
+              <div class="col-xs-8">
+                <h1>
+                  Foto
+                </h1>
+              </div><!-- /.col -->
+
+              <div class="col-xs-2"></div>
+            </div><!-- /.row -->
+
+            <div class="row">
+              <div class="col-xs-2"></div>
+
+              <div class="col-xs-8">
+                <!-- PAGE CONTENT BEGINS -->
+
+                <div class="form-group">
+                  <div class="col-xs-11">
+                    <input multiple="" required type=file name=file id="id-input-file-3">
+                  </div>
+                </div>
+
+              </div><!-- /.col -->
+
+              <div class="col-xs-2"></div>
+
+            </div><!-- /.row -->
+
+            <div class="row">
+              <div class="col-xs-2"></div>
+
+              <div class="col-xs-8">
+                <h1>
+                  Estilo
+                </h1>
+              </div><!-- /.col -->
+
+              <div class="col-xs-2"></div>
+            </div><!-- /.row -->
+
+            <div class="row">
+              <div class="col-xs-2"></div>
+
+              <div class="col-xs-8">
+                <!-- PAGE CONTENT BEGINS -->
+
+                <div class="form-group">
+                  <div class="col-xs-12">
+                    <span class="profile-picture">
+                      <img id="avatar1" onclick="setCheckpoint(1,'models/udnie.ckpt')" class="editable img-responsive editable-click editable-empty"
+                      alt="Alex's Avatar" src="{{ url_for('static', filename='images/avatars/udnie.jpg') }}" height="180px" width="200px">
+                    </span>
+                    <span class="profile-picture">
+                      <img id="avatar2" onclick="setCheckpoint(2,'models/la_muse.ckpt')" class="editable img-responsive editable-click editable-empty"
+                      alt="Alex's Avatar" src="{{ url_for('static', filename='images/avatars/la_muse.jpg') }}" height="180px" width="200px">
+                    </span>
+                    <span class="profile-picture">
+                      <img id="avatar3" onclick="setCheckpoint(3,'models/rain_princess.ckpt')" class="editable img-responsive editable-click editable-empty"
+                      alt="Alex's Avatar" src="{{ url_for('static', filename='images/avatars/rain_princess.jpg') }}" height="180px" width="200px">
+                    </span>
+                    <span class="profile-picture">
+                      <img id="avatar4" onclick="setCheckpoint(4,'models/scream.ckpt')" class="editable img-responsive editable-click editable-empty"
+                      alt="Alex's Avatar" src="{{ url_for('static', filename='images/avatars/scream.jpg') }}" height="180px" width="200px">
+                    </span>
+                    <span class="profile-picture">
+                      <img id="avatar5" onclick="setCheckpoint(5,'models/wave.ckpt')" class="editable img-responsive editable-click editable-empty"
+                      alt="Alex's Avatar" src="{{ url_for('static', filename='images/avatars/wave.jpg') }}" height="180px" width="200px">
+                    </span>
+                    <span class="profile-picture">
+                      <img id="avatar6" onclick="setCheckpoint(6,'models/wreck.ckpt')" class="editable img-responsive editable-click editable-empty"
+                      alt="Alex's Avatar" src="{{ url_for('static', filename='images/avatars/wreck.jpg') }}" height="180px" width="200px">
+                    </span>
+                    <input type="hidden" id="checkpoint" name="checkpoint" value="models/udnie.ckpt" />
+                  </div>
+                </div>
+
+              </div><!-- /.col -->
+
+              <div class="col-xs-2"></div>
+            </div><!-- /.row -->
+
+            <div class="row">
+              <div class="col-xs-2"></div>
+
+              <div class="col-xs-8">
+                <h1>
+                  Stylize
+                </h1>
+              </div><!-- /.col -->
+
+              <div class="col-xs-2"></div>
+            </div><!-- /.row -->
+
+            <div class="row">
+              <div class="col-xs-2"></div>
+
+              <div class="col-xs-8">
+                <!-- PAGE CONTENT BEGINS -->
+
+                <div class="form-group">
+                  <div class="col-xs-12">
+                    <input type="submit" value="Estilizar" class="btn btn-primary">
+                  </div>
+                </div>
+
+              </div><!-- /.col -->
+
+              <div class="col-xs-2"></div>
+
+            </div><!-- /.row -->
+          </form>
+
+        </div><!-- /.page-content -->
+      </div>
+    </div><!-- /.main-content -->
+
+    <div class="footer">
+      <div class="footer-inner">
+        <div class="footer-content">
+          <span class="bigger-120">
+            Alexandre Velloso &nbsp;
+            <span class="action-buttons">
+              <a href="https://github.com/AlexandreVelloso" target="_blank">
+                <i class="ace-icon fa fa-github-square red bigger-150"></i>
+              </a>
+            </span>
+
+            Caio Piantino &nbsp;
+            <span class="action-buttons">
+              <a href="https://github.com/skai2" target="_blank">
+                <i class="ace-icon fa fa-github-square green bigger-150"></i>
+              </a>
+            </span>
+
+            Daniel Terenzi &nbsp;
+            <span class="action-buttons">
+              <a href="#">
+                <i class="ace-icon fa fa-github-square blue bigger-150"></i>
+              </a>
+            </span>
+          </span>
+
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.main-container -->
+
+  <!-- basic scripts -->
+
+  <!--[if !IE]> -->
+  <script src="{{ url_for('static', filename='js/jquery-2.1.4.min.js') }}"></script>
+
+  <!-- <![endif]-->
+
+  <!--[if IE]>
+  <script src="{{ url_for('static', filename='js/jquery-1.11.3.min.js') }}"></script>
+  <![endif]-->
+  <script type="text/javascript">
+  if ('ontouchstart' in document.documentElement) document.write("<script src=`{{ url_for('static', filename='js/jquery.mobile.custom.min.js') }}`>" + "<" + "/script>");
+  </script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+  <!-- page specific plugin scripts -->
+
+  <!--[if lte IE 8]>
+  <script src="{{ url_for('static', filename='js/excanvas.min.js') }}"></script>
+  <![endif]-->
+  <script src="{{ url_for('static', filename='js/jquery-ui.custom.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.ui.touch-punch.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/chosen.jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/spinbox.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap-datepicker.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap-timepicker.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/moment.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/daterangepicker.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap-datetimepicker.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap-colorpicker.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.knob.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/autosize.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.inputlimiter.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery.maskedinput.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap-tag.min.js') }}"></script>
+
+  <!-- ace scripts -->
+  <script src="{{ url_for('static', filename='js/ace-elements.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/ace.min.js') }}"></script>
+
+  <!-- inline scripts related to this page -->
+  <script type="text/javascript">
+  jQuery(function ($) {
+
+    if (!ace.vars['touch']) {
+      $('.chosen-select').chosen({ allow_single_deselect: true });
+
+      $(window)
+      .off('resize.chosen')
+      .on('resize.chosen', function () {
+        $('.chosen-select').each(function () {
+          var $this = $(this);
+          $this.next().css({ 'width': $this.parent().width() });
+        })
+      }).trigger('resize.chosen');
+      //resize chosen on sidebar collapse/expand
+      $(document).on('settings.ace.chosen', function (e, event_name, event_val) {
+        if (event_name != 'sidebar_collapsed') return;
+        $('.chosen-select').each(function () {
+          var $this = $(this);
+          $this.next().css({ 'width': $this.parent().width() });
+        })
+      });
+
+
+      $('#chosen-multiple-style .btn').on('click', function (e) {
+        var target = $(this).find('input[type=radio]');
+        var which = parseInt(target.val());
+        if (which == 2) $('#form-field-select-4').addClass('tag-input-style');
+        else $('#form-field-select-4').removeClass('tag-input-style');
+      });
+    }
+
+    $('#id-input-file-1 , #id-input-file-2').ace_file_input({
+      no_file: 'No File ...',
+      btn_choose: 'Choose',
+      btn_change: 'Change',
+      droppable: false,
+      onchange: null,
+      thumbnail: false //| true | large
+      //whitelist:'gif|png|jpg|jpeg'
+      //blacklist:'exe|php'
+      //onchange:''
+      //
+    });
+    //pre-show a file name, for example a previously selected file
+    //$('#id-input-file-1').ace_file_input('show_file_list', ['myfile.txt'])
+
+
+    $('#id-input-file-3').ace_file_input({
+      style: 'well',
+      btn_choose: 'Clique aqui ou arraste imagens',
+      btn_change: null,
+      droppable: true,
+      thumbnail: 'small',
+      'allowExt': ["jpeg", "jpg", "png"],
+      'allowMime': ["image/jpg", "image/jpeg", "image/png"],
+      preview_error: function (filename, error_code) {
+        //name of the file that failed
+        //error_code values
+        //1 = 'FILE_LOAD_FAILED',
+        //2 = 'IMAGE_LOAD_FAILED',
+        //3 = 'THUMBNAIL_FAILED'
+        //alert(error_code);
+      }
+
+    }).on('change', function () {
+      //console.log($(this).data('ace_input_files'));
+      //console.log($(this).data('ace_input_method'));
+    });
+
+    /////////
+    $('#modal-form input[type=file]').ace_file_input({
+      style: 'well',
+      btn_choose: 'Clique aqui ou arraste imagens',
+      btn_change: null,
+      droppable: true,
+      thumbnail: 'large'
+    })
+
+    /**
+    //or you can activate the chosen plugin after modal is shown
+    //this way select element becomes visible with dimensions and chosen works as expected
+    $('#modal-form').on('shown', function () {
+    $(this).find('.modal-chosen').chosen();
+  })
+  */
+
+  $(document).one('ajaxloadstart.page', function (e) {
+    autosize.destroy('textarea[class*=autosize]')
+
+    $('.limiterBox,.autosizejs').remove();
+    $('.daterangepicker.dropdown-menu,.colorpicker.dropdown-menu,.bootstrap-datetimepicker-widget.dropdown-menu').remove();
+  });
+
+});
+</script>
+
+<!-- My Javascript -->
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+
+</html>
