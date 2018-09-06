@@ -1,7 +1,6 @@
-Werkzeug
-moviepy
-scipy
-tensorflow
-numpy
-Pillow
-Flask
+tensorflow==1.10.0
+Werkzeug==0.14.1
+scipy==1.1.0
+Flask==1.0.2
+numpy==1.15.1
+Pillow==5.2.0
