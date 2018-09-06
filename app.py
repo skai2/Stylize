@@ -2,7 +2,7 @@ import os
 from flask import Flask, request, redirect, url_for, send_from_directory, render_template
 from werkzeug.utils import secure_filename
 from PIL import Image, ImageFilter
-from evaluate import ffwd_different_dimensions
+from evaluate import ffwd_to_img
 
 
 UPLOAD_FOLDER = './'
@@ -29,10 +29,10 @@ def upload_file():
             flash('No selected file')
             return redirect(request.url)
         if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
+            filename = 'in.jpg'
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             filename_out = 'out.jpg'
-            ffwd_different_dimensions(filename, filename_out, request.form['checkpoint'])
+            ffwd_to_img(filename, filename_out, request.form['checkpoint'])
             return redirect(url_for('uploaded_file',
                                     filename=filename_out))
     return render_template('./index.html')
