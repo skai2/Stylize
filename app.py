@@ -1,12 +1,12 @@
 import os
-from flask import Flask, request, redirect, url_for, send_from_directory
+from flask import Flask, request, redirect, url_for, send_from_directory, render_template
 from werkzeug.utils import secure_filename
 from PIL import Image, ImageFilter
 from evaluate import ffwd_to_img
 
 
 UPLOAD_FOLDER = './'
-ALLOWED_EXTENSIONS = set(['jpg'])
+ALLOWED_EXTENSIONS = set(['jpg', 'jpeg', 'png'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -35,25 +35,9 @@ def upload_file():
             ffwd_to_img(filename, filename_out, request.form['checkpoint'])
             return redirect(url_for('uploaded_file',
                                     filename=filename_out))
-    return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-      <p><input type=file name=file>
-          <select name="checkpoint">
-              <option value="models/udnie.ckpt">Udnie</option>
-              <option value="models/la_muse.ckpt">La Muse</option>
-              <option value="models/rain_princess.ckpt">Rain Princess</option>
-              <option value="models/scream.ckpt">Scream</option>
-              <option value="models/wave.ckpt">Wave</option>
-              <option value="models/wreck.ckpt">Wreck</option>
-          </select> 
-         <input type=submit value=Upload>
-    </form>
-    '''
+    return render_template('./index.html')
 
-@app.route('/uploads/<filename>')
+@app.route('/uploads<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'],
                                filename)

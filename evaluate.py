@@ -11,8 +11,8 @@ import time
 import json
 import subprocess
 import numpy
-from moviepy.video.io.VideoFileClip import VideoFileClip
-import moviepy.video.io.ffmpeg_writer as ffmpeg_writer
+# from moviepy.video.io.VideoFileClip import VideoFileClip
+# import moviepy.video.io.ffmpeg_writer as ffmpeg_writer
 
 BATCH_SIZE = 4
 DEVICE = '/gpu:0'
@@ -120,18 +120,18 @@ def ffwd(data_in, paths_out, checkpoint_dir, device_t='/gpu:0', batch_size=4):
             _preds = sess.run(preds, feed_dict={img_placeholder:X})
             for j, path_out in enumerate(curr_batch_out):
                 save_img(path_out, _preds[j])
-                
+
         remaining_in = data_in[num_iters*batch_size:]
         remaining_out = paths_out[num_iters*batch_size:]
     if len(remaining_in) > 0:
-        ffwd(remaining_in, remaining_out, checkpoint_dir, 
+        ffwd(remaining_in, remaining_out, checkpoint_dir,
             device_t=device_t, batch_size=1)
 
 def ffwd_to_img(in_path, out_path, checkpoint_dir, device='/cpu:0'):
     paths_in, paths_out = [in_path], [out_path]
     ffwd(paths_in, paths_out, checkpoint_dir, batch_size=1, device_t=device)
 
-def ffwd_different_dimensions(in_path, out_path, checkpoint_dir, 
+def ffwd_different_dimensions(in_path, out_path, checkpoint_dir,
             device_t=DEVICE, batch_size=4):
     in_path_of_shape = defaultdict(list)
     out_path_of_shape = defaultdict(list)
@@ -143,7 +143,7 @@ def ffwd_different_dimensions(in_path, out_path, checkpoint_dir,
         out_path_of_shape[shape].append(out_image)
     for shape in in_path_of_shape:
         print('Processing images of shape %s' % shape)
-        ffwd(in_path_of_shape[shape], out_path_of_shape[shape], 
+        ffwd(in_path_of_shape[shape], out_path_of_shape[shape],
             checkpoint_dir, device_t, batch_size)
 
 def build_parser():
@@ -171,7 +171,7 @@ def build_parser():
                         metavar='BATCH_SIZE', default=BATCH_SIZE)
 
     parser.add_argument('--allow-different-dimensions', action='store_true',
-                        dest='allow_different_dimensions', 
+                        dest='allow_different_dimensions',
                         help='allow different image dimensions')
 
     return parser
@@ -202,7 +202,7 @@ def main():
         full_in = [os.path.join(opts.in_path,x) for x in files]
         full_out = [os.path.join(opts.out_path,x) for x in files]
         if opts.allow_different_dimensions:
-            ffwd_different_dimensions(full_in, full_out, opts.checkpoint_dir, 
+            ffwd_different_dimensions(full_in, full_out, opts.checkpoint_dir,
                     device_t=opts.device, batch_size=opts.batch_size)
         else :
             ffwd(full_in, full_out, opts.checkpoint_dir, device_t=opts.device,
